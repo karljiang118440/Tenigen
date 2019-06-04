@@ -34,6 +34,12 @@
 #include <stdio.h>
 #include "common.hpp"
 
+
+using namespace cv;
+using namespace std;
+
+
+
 #define DEF_PROTO "models/MobileNetSSD_deploy.prototxt"
 #define DEF_MODEL "models/MobileNetSSD_deploy.caffemodel"
 #define DEF_IMAGE "tests/images/ssd_dog.jpg"
@@ -204,16 +210,25 @@ int main(int argc, char *argv[])
     int img_w = 300;
     int img_size = img_h * img_w * 3;
     float *input_data = (float *)malloc(sizeof(float) * img_size);
-    cv::VideoCapture capture(0);
+
+#if 1
+
+	string filename = "road.avi";//打开的视频文件
+	cv::VideoCapture capture;
+	capture.open(filename);
+
+
+#endif
 
 #if  0
+    cv::VideoCapture capture(0);
     capture.set(CV_CAP_PROP_FRAME_WIDTH, 1920);
     capture.set(CV_CAP_PROP_FRAME_HEIGHT, 1080);
 
 #endif
 
-    capture.set(CV_CAP_PROP_FRAME_WIDTH, 300);
-    capture.set(CV_CAP_PROP_FRAME_HEIGHT, 300);
+    capture.set(CV_CAP_PROP_FRAME_WIDTH, 640);
+    capture.set(CV_CAP_PROP_FRAME_HEIGHT, 480);
 
     cv::Mat frame;
 
