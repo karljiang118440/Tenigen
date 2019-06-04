@@ -205,8 +205,16 @@ int main(int argc, char *argv[])
     int img_size = img_h * img_w * 3;
     float *input_data = (float *)malloc(sizeof(float) * img_size);
     cv::VideoCapture capture(0);
+
+#if  0
     capture.set(CV_CAP_PROP_FRAME_WIDTH, 1920);
     capture.set(CV_CAP_PROP_FRAME_HEIGHT, 1080);
+
+#endif
+
+    capture.set(CV_CAP_PROP_FRAME_WIDTH, 300);
+    capture.set(CV_CAP_PROP_FRAME_HEIGHT, 300);
+
     cv::Mat frame;
 
     int node_idx=0;
